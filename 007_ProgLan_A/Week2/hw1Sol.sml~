@@ -1,0 +1,45 @@
+fun is_older (x : int*int*int, y : int*int*int) =
+    if #1 x < #1 y
+    then true
+    else
+	if #2 x < #2 y
+	then true
+	else #3 x < #3 y
+
+fun number_in_month (dates : (int*int*int) list, x : int) =
+    if null (tl dates)
+    then if #2 (hd dates) = x
+	 then 1 else 0
+    else
+	if #2 (hd dates) = x
+	then 1 + number_in_month(tl dates, x)
+	else number_in_month(tl dates, x)
+
+fun number_in_months (dates : (int*int*int) list, months :  int list) =
+    if null (tl months)
+    then number_in_month(dates, hd months)
+    else let val x = number_in_months(dates, tl months)
+	 in number_in_month(dates, hd months) + x
+	 end
+
+fun dates_in_month (dates : (int*int*int) list, month : int) =
+    if null (tl dates)
+    then if #2 (hd dates) = month
+	 then dates else []
+    else
+	if #2 (hd dates) = month
+	then hd dates :: dates_in_month(tl dates, month)
+	else dates_in_month(tl dates, month)
+
+fun dates_in_months (dates : (int*int*int) list, months :  int list) =
+    if null (tl months)
+    then dates_in_month(dates, hd months)
+    else let val x = dates_in_months(dates, tl months)
+	 in dates_in_month(dates, hd months) @ x
+	 end
+
+
+
+		      
+		     
+		 		    

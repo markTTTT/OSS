@@ -1,0 +1,7 @@
+fun full_name3 {first=x,middle=y,last=z} =
+    x ^ " " ^ y ^ " " ^ z
+
+fun sum_triple3 (x,y,z) =
+    x + y + z
+
+		
